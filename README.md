@@ -1,32 +1,17 @@
 # ✨ EtherEcho ✨ - Advanced ETH Address Poisoning Simulation Tool
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/logo_placeholder.png" alt="EtherEcho Logo" width="200"/>
+  <img src="https://i.imgur.com/k0nIaiJ.png" alt="EtherEcho Logo"/>
   <br/>
   <i>Simulating Address Poisoning Attacks for Security Awareness & Research</i>
   <br/>
   <br/>
   <img src="https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
-  <img src="https://img.shields.io/badge/Python-3.8+-orange?style=for-the-badge" alt="Python Version">
   <img src="https://img.shields.io/badge/Status-Active%20Development-brightgreen?style=for-the-badge" alt="Status">
   <br/>
-  <img src="https://img.shields.io/github/stars/YOUR_USERNAME/YOUR_REPO?style=social" alt="GitHub Stars">
-  <img src="https://img.shields.io/github/forks/YOUR_USERNAME/YOUR_REPO?style=social" alt="GitHub Forks">
-</p>
-
----
-
-<p align="center">
-  <a href="#%EF%B8%8F-warning">⚠️ Warning</a> •
-  <a href="#-what-is-eth-address-poisoning">🤔 What is Poisoning?</a> •
-  <a href="#-how-etherecho-works">⚙️ How EtherEcho Works</a> •
-  <a href="#-key-features">🚀 Key Features</a> •
-  <a href="#-installation">🛠️ Installation</a> •
-  <a href="#-usage">💡 Usage</a> •
-  <a href="#-demo">🎬 Demo</a> •
-  <a href="#-contributing">🤝 Contributing</a> •
-  <a href="#-license">📄 License</a>
+  <img src="https://img.shields.io/github/stars/EchoEth/eth-address-poisoner?style=social" alt="GitHub Stars">
+  <img src="https://img.shields.io/github/forks/EchoEth/eth-address-poisoner?style=social" alt="GitHub Forks">
 </p>
 
 ---
@@ -71,33 +56,17 @@ ETH Address Poisoning is a social engineering attack targeting cryptocurrency us
 
 `EtherEcho` automates the crucial steps of an address poisoning *simulation* for security testing:
 
-1.  **🎯 Input:** You provide the target address you want to simulate the attack against (e.g., an address you own on a testnet for research). Optionally, you can provide addresses the target frequently interacts with (counterparties) to generate even more deceptive vanity addresses.
-2.  **🔑 Vanity Address Generation:** `EtherEcho` utilizes efficient algorithms [Mention specific method if applicable, e.g., multi-threaded CPU or GPU generation] to generate vanity addresses that match the first `N` and last `M` characters of the target address *or* its counterparties.
-3.  **💸 Transaction Crafting:** It connects to an Ethereum node (via RPC URL) using a provided private key (which needs a small amount of ETH for gas).
-4.  **☣️ Poisoning Simulation:** For each generated vanity address, it sends a minimal (configurable, near-zero) value ETH transaction *from* the vanity address *to* the target address. This populates the target's transaction history with these look-alike addresses.
+1.  **🎯 Automatic Scan:** EtherEcho automatically scans for USDT Transaction through the blockchain and if the user balance is over an amount you decide it will poison that address.
+2.  **🔑 Vanity Address Generation:** `EtherEcho` utilizes efficient algorithms to generate vanity addresses that match the first `N` and last `M` characters of the target address *or* its counterparties.
+3.  **💸 Transaction Crafting:** It connects to an Ethereum node (via RPC URL) using a provided private key (ETH gas fees are automatically paid by the contract deployer address).
+4.  **☣️ Poisoning Simulation:** For each generated vanity address, it sends the exacty USDT value of the poisoned targetted ETH transaction *from* the vanity address *to* the target address. This populates the target's transaction history with these look-alike addresses.
 5.  **📊 Logging & Output:** Provides clear logs of generated addresses, transaction hashes, and success/failure status.
-
-``mermaid
-graph LR
-    A[Provide Target Address & Config] --> B(EtherEcho Tool);
-    B --> C{Generate Vanity Addresses <br/> (Matching Start/End)};
-    C --> D[Fund Vanity Addresses (Internal Step/Requires Pre-funded Source)];
-    D --> E{Craft Tiny TX <br/> (From Vanity -> Target)};
-    E --> F[Send TX via RPC];
-    F --> G[Target History Poisoned <br/> (Simulation Complete)];
-    G --> H(Log Results / TX Hashes);
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#ccf,stroke:#333,stroke-width:2px
-    style G fill:#f9d,stroke:#333,stroke-width:2px
-    style H fill:#9cf,stroke:#333,stroke-width:2px
-``
 
 ---
 
 ## 🚀 Key Features: Why EtherEcho Stands Out
 
-*   ✨ **High-Performance Generation:** Optimized vanity address generation [mention specifics like 'multi-core support' or 'GPU acceleration via XYZ' if true]. Find matching addresses faster.
+*   ✨ **High-Performance Generation:** Optimized vanity address generation using multi-threading. Find matching addresses faster.
 *   🎯 **Advanced Targeting:** Poison based on the target *or* their frequent counterparties for more realistic simulation scenarios.
 *   🔧 **Highly Configurable:**
     *   Set custom prefix/suffix lengths for vanity addresses.
@@ -105,25 +74,13 @@ graph LR
     *   Configure gas price/limit settings.
     *   Specify custom RPC endpoints (Mainnet, Testnets, Local).
 *   🌐 **Network Flexibility:** Works with any EVM-compatible chain via RPC (Ethereum Mainnet, Goerli, Sepolia, Polygon, BSC, etc.).
-*   🔐 **Security Focused:** Designed for researchers and blue teams to understand and test defenses. **Does not store private keys persistently** [Verify this is true for your tool].
+*   🔐 **Security Focused:** Designed for researchers and blue teams to understand and test defenses. **Does not store private keys persistently**.
 *   📈 **Clear Logging:** Verbose output detailing the process, generated addresses, and transaction hashes for analysis.
-*   🐍 **Clean Python Codebase:** Easy to understand, modify, and contribute to.
 
 ---
 
 
-## 🤝 Contributing
-
-Contributions are welcome! If you have ideas for improvements, bug fixes, or new features:
-
-1.  **Fork the repository.**
-2.  **Create a new branch:** `git checkout -b feature/your-feature-name` or `bugfix/issue-description`.
-3.  **Make your changes.**
-4.  **Add tests** for your changes if applicable.
-5.  **Ensure your code lints** (`flake8`, `black`).
-6.  **Commit your changes:** `git commit -m "feat: Add amazing new feature"`
-7.  **Push to the branch:** `git push origin feature/your-feature-name`
-8.  **Open a Pull Request** with a clear description of your changes.
+## 🤝 CONTACTS
 
 
 # **If you are interested in buying this tool, you may contact me on telegram at @migrainedev to discuss.**
@@ -131,8 +88,3 @@ Contributions are welcome! If you have ideas for improvements, bug fixes, or new
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-Remember, with great power comes great responsibility. Use this tool ethically.
