@@ -1,4 +1,4 @@
-# ✨ EtherEcho ✨ - Advanced ETH Address Poisoning Simulation Tool
+# ✨ EtherEcho ✨ -  ETH Address Poisoning Tool
 
 <p align="center">
   <img src="https://i.imgur.com/k0nIaiJ.png" alt="EtherEcho Logo"/>
